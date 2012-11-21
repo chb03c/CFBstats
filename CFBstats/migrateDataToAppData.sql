@@ -1,0 +1,2 @@
+INSERT INTO app_team(id,version,loses,name,total_points,wins)  SELECT team_code,'0','0',name,'0','4096' from team;
+INSERT INTO app_game(id,version,home_score,home_team_id,visiting_score,visiting_team_id) SELECT game_code,'0','0',home_team_code,'0',visit_team_code from game;

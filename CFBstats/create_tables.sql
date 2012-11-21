@@ -263,7 +263,7 @@ CREATE TABLE player(
 );
 DROP TABLE IF EXISTS game;
 CREATE TABLE game(
-	game_code int,
+	game_code VARCHAR(255),
 	game_date VARCHAR(255),
 	visit_team_code int,
 	home_team_code int,
