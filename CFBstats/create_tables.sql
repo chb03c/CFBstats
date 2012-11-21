@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS receptions;
+DROP TABLE IF EXISTS reception;
 
-CREATE TABLE receptions(
+CREATE TABLE reception(
 	game_code int,
 	play_number int,
 	team_code int,
@@ -45,8 +45,8 @@ CREATE TABLE rush(
 	safety boolean
 );
 
-DROP TABLE IF EXISTS punt_returns;
-CREATE TABLE punt_returns(
+DROP TABLE IF EXISTS punt_return;
+CREATE TABLE punt_return(
 	game_code int,
 	play_number int,
 	team_code int,
@@ -58,8 +58,8 @@ CREATE TABLE punt_returns(
 	safety boolean,
 	fair_catch int
 );
-DROP TABLE IF EXISTS punts;
-CREATE TABLE punts(
+DROP TABLE IF EXISTS punt;
+CREATE TABLE punt(
 	game_code int,
 	play_number int,
 	team_code int,
@@ -73,8 +73,8 @@ CREATE TABLE punts(
 	out_of_bounds boolean
 );
 
-DROP TABLE IF EXISTS plays;
-CREATE TABLE plays(
+DROP TABLE IF EXISTS play;
+CREATE TABLE play(
 	game_code int,
 	play_number int,
 	period_number int,
