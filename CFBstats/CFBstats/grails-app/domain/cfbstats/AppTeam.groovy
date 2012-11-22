@@ -10,4 +10,8 @@ class AppTeam {
     Integer wins
     Integer loses
     Integer totalPoints
+
+    public String toString(){
+    	return name;
+    }
 }

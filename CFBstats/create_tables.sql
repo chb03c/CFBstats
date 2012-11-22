@@ -1,10 +1,10 @@
 DROP TABLE IF EXISTS reception;
 
 CREATE TABLE reception(
-	game_code int,
-	play_number int,
-	team_code int,
-	player_code int,
+	game_code VARCHAR(255),
+	play_number VARCHAR(255),
+	team_code VARCHAR(255),
+	player_code VARCHAR(255),
 	reception int,
 	yards int,
 	touchdown boolean,
@@ -16,11 +16,11 @@ CREATE TABLE reception(
 DROP TABLE IF EXISTS pass;
 
 CREATE TABLE pass(
-	game_code int,
-	play_number int,
-	team_code int,
-	passer_player_code int,
-	receiver_player_code int,
+	game_code VARCHAR(255),
+	play_number VARCHAR(255),
+	team_code VARCHAR(255),
+	passer_player_code VARCHAR(255),
+	receiver_player_code VARCHAR(255),
 	attempt boolean,
 	completion boolean,
 	yards int,
@@ -31,10 +31,10 @@ CREATE TABLE pass(
 );
 DROP TABLE IF EXISTS rush;
 CREATE TABLE rush(
-	game_code int,
-	play_number int,
-	team_code int,
-	player_code int,
+	game_code VARCHAR(255),
+	play_number VARCHAR(255),
+	team_code VARCHAR(255),
+	player_code VARCHAR(255),
 	attempt boolean,
 	yards int,
 	touchdown boolean,
@@ -47,10 +47,10 @@ CREATE TABLE rush(
 
 DROP TABLE IF EXISTS punt_return;
 CREATE TABLE punt_return(
-	game_code int,
-	play_number int,
-	team_code int,
-	player_code int,
+	game_code VARCHAR(255),
+	play_number VARCHAR(255),
+	team_code VARCHAR(255),
+	player_code VARCHAR(255),
 	attempt boolean,
 	yards int,
 	touchdown int,
@@ -60,10 +60,10 @@ CREATE TABLE punt_return(
 );
 DROP TABLE IF EXISTS punt;
 CREATE TABLE punt(
-	game_code int,
-	play_number int,
-	team_code int,
-	player_code int,
+	game_code VARCHAR(255),
+	play_number VARCHAR(255),
+	team_code VARCHAR(255),
+	player_code VARCHAR(255),
 	attempt boolean,
 	yards int,
 	blocked boolean,
@@ -75,12 +75,12 @@ CREATE TABLE punt(
 
 DROP TABLE IF EXISTS play;
 CREATE TABLE play(
-	game_code int,
-	play_number int,
+	game_code VARCHAR(255),
+	play_number VARCHAR(255),
 	period_number int,
 	clock int,
-	offense_team_code int,
-	defense_team_code int,
+	offense_team_code VARCHAR(255),
+	defense_team_code VARCHAR(255),
 	offense_points int,
 	defense_points int,
 	down int,
@@ -93,9 +93,9 @@ CREATE TABLE play(
 );
 DROP TABLE IF EXISTS drive;
 CREATE TABLE drive(
-	game_code int,
+	game_code VARCHAR(255),
 	drive_number int,
-	team_code int,
+	team_code VARCHAR(255),
 	start_period int,
 	start_clock int,
 	start_spot int,
@@ -111,8 +111,8 @@ CREATE TABLE drive(
 );
 DROP TABLE IF EXISTS player_game_statistics;
 CREATE TABLE player_game_statistics(
-	player_code int,
-	game_code int,
+	player_code VARCHAR(255),
+	game_code VARCHAR(255),
 	rush_attempt int,
 	rush_yard int,
 	rush_td int,
@@ -170,8 +170,8 @@ CREATE TABLE player_game_statistics(
 );
 DROP TABLE IF EXISTS team_game_statistics;
 CREATE TABLE team_game_statistics(
-	team_code int,
-	game_code int,
+	team_code VARCHAR(255),
+	game_code VARCHAR(255),
 	rush_att int,
 	rush_yard int,
 	rush_td int,
@@ -241,14 +241,14 @@ CREATE TABLE team_game_statistics(
 );
 DROP TABLE IF EXISTS game_statistics;
 CREATE TABLE game_statistics(
-	game_code int,
+	game_code VARCHAR(255),
 	attendance int,
 	duration int
 );
 DROP TABLE IF EXISTS player;
 CREATE TABLE player(
-	player_code int,
-	team_code int,
+	player_code VARCHAR(255),
+	team_code VARCHAR(255),
 	last_name VARCHAR(255),
 	first_name VARCHAR(255),
 	uniform_number int,
@@ -265,8 +265,8 @@ DROP TABLE IF EXISTS game;
 CREATE TABLE game(
 	game_code VARCHAR(255),
 	game_date VARCHAR(255),
-	visit_team_code int,
-	home_team_code int,
+	visit_team_code VARCHAR(255),
+	home_team_code VARCHAR(255),
 	stadium_code int,
 	site VARCHAR(255)
 );
@@ -282,7 +282,7 @@ CREATE TABLE stadium(
 );
 DROP TABLE IF EXISTS team;
 CREATE TABLE team(
-	team_code int,
+	team_code VARCHAR(255),
 	name VARCHAR(255),
 	conference_code int
 );
@@ -292,3 +292,28 @@ CREATE TABLE conference(
 	name VARCHAR(255),
 	subdivision VARCHAR(255)
 );
+DROP TABLE IF EXISTS app_game;
+DROP TABLE IF EXISTS app_team;
+CREATE TABLE app_team (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `version` bigint(20) NOT NULL,
+  `loses` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `total_points` int(11) NOT NULL,
+  `wins` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2916 DEFAULT CHARSET=latin1 ;
+CREATE TABLE app_game (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `version` bigint(20) NOT NULL,
+  `home_score` int(11) NOT NULL,
+  `home_team_id` bigint(20) NOT NULL,
+  `visiting_score` int(11) NOT NULL,
+  `visiting_team_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK4595B75038E36065` (`visiting_team_id`),
+  KEY `FK4595B7501E7F6A8D` (`home_team_id`),
+  CONSTRAINT `FK4595B7501E7F6A8D` FOREIGN KEY (`home_team_id`) REFERENCES `app_team` (`id`),
+  CONSTRAINT `FK4595B75038E36065` FOREIGN KEY (`visiting_team_id`) REFERENCES `app_team` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2915064820121118 DEFAULT CHARSET=latin1;
+
